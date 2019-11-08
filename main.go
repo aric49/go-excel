@@ -5,6 +5,12 @@ import (
 	"github.com/360EntSecGroup-Skylar/excelize"
 )
 
+type spreadSheetValues struct {
+	value1 string 
+	value2 string
+	value3 string
+}
+
 func main() {
 	fmt.Println("Hello World!")
 	myFile := excelize.NewFile()
@@ -40,6 +46,13 @@ func main() {
 	fmt.Println("Starting for loop....")
 	for _, v := range rows[1:] {
 		fmt.Println(v[1])
+	}
+	// parse spreadsheet data into a struct
+	for i := range rows[1:] {
+		//save each row into a struct
+		data := spreadSheetValues{value1: rows[1:][i][0], value2: rows[1:][i][1], value3: rows[1:][i][2]}
+		//do something with the data
+		fmt.Println(data.value1, data.value2, data.value3)
 	}
 
 	//loop over rows
